@@ -1,1 +1,2 @@
 # trip_planner
+Trip Planner is a user-friendly app designed to assist users in effortlessly planning and organizing their trips. The app provides list of available destinations for user to add their destination to their intinerary to plan their travel. The app features intuitive itinerary section which showcases the user's planned trips, that sorted chronologically based on the selected dates to ensure seamless travel experience. Overall, Trip Planner guarantees a well-organized and hassle-free travel experience for user.
