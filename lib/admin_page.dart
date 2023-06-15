@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:trip_planner/admin_profile.dart';
 import 'package:trip_planner/dashboard.dart';
 import 'package:trip_planner/list_destination.dart';
 import 'package:trip_planner/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:trip_planner/pages/admin_profile.dart';
 
 class AdminPage extends StatefulWidget {
   static String routeName = '/adminPage';

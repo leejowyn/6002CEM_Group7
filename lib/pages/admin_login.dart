@@ -64,7 +64,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
       Navigator.of(context).pushNamed(
         AdminPage.routeName,
       );
-      // Navigator.pushNamed(context, AdminProfilePage.routeName);
+
     } on FirebaseAuthException catch (e) {
       // pop the loading circle
       Navigator.pop(context);
@@ -143,7 +143,11 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'EMAIL',
+
+                    errorText: emailValid ? null : "This field is empty",
+
                     errorText: emailValid ? null: "This field is empty",
+
                     labelStyle: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
@@ -159,7 +163,11 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'PASSWORD',
+
+                    errorText: passwordValid ? null : "This field is empty",
+
                     errorText: passwordValid ? null: "This field is empty",
+
                     labelStyle: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
@@ -177,6 +185,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                 Container(
                   alignment: const Alignment(1, 0),
                   padding: const EdgeInsets.only(top: 15, left: 20),
+
                   child: const InkWell(
                     child: Text(
                       'Forgot Password',
@@ -187,6 +196,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                           decoration: TextDecoration.underline),
                     ),
                   ),
+
                 ),
                 const SizedBox(
                   height: 40,
@@ -197,6 +207,19 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                     child: Center(
                       child: FilledButton(
                         onPressed: () {
+
+                          setState(() {
+                            emailValid =
+                                emailController.text.isEmpty ? false : true;
+                            passwordValid =
+                                passwordController.text.isEmpty ? false : true;
+                          });
+
+                          if (emailValid && passwordValid) {
+                            signAdminIn(context);
+                          
+                          }
+
                                 setState(() {
                                 emailValid = emailController.text.isEmpty ? false : true;
                                 passwordValid = passwordController.text.isEmpty ? false : true;
@@ -204,6 +227,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
 
                                 if (emailValid && passwordValid) {
                           Navigator.pushNamed(context, AdminPage.routeName);}
+
                         },
                         child: const Text(
                           'Login',

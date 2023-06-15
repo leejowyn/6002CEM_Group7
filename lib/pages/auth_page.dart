@@ -5,6 +5,7 @@ import 'package:trip_planner/pages/admin_profile.dart';
 import 'package:trip_planner/pages/navigation_page.dart';
 import 'package:trip_planner/pages/user_profile.dart';
 import 'package:trip_planner/pages/splash_page.dart';
+import '../admin_page.dart';
 
 class AuthPage extends StatelessWidget {
   static String routeName = '/authPage';
@@ -31,7 +32,11 @@ class AuthPage extends StatelessWidget {
               }
               else {
                 Navigator.of(context).pushNamed(
+
+                  AdminPage.routeName,
+
                   AdminProfilePage.routeName,
+
                 );
                 // return AdminProfilePage();
               }

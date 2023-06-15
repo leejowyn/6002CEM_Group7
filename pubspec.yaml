@@ -42,6 +42,10 @@ dependencies:
   firebase_database: ^10.2.2
   cloud_firestore: ^4.8.0
   http:
+  firebase_storage:
+  file_picker:
+  csc_picker:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,6 +71,12 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - images/bg.jpg
+     - images/map.png
+     - images/star.png
+     - images/profile.png
+     - images/schedule.png
+     - images/user.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

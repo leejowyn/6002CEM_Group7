@@ -351,7 +351,7 @@ class _AddDestinationState extends State<AddDestination> {
                 label: const Text('Go Back', style: TextStyle(fontSize: 16,color: Colors.white)),
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.blue),
+                      MaterialStateProperty.all<Color>(Color(0xff0f3C4D)),
                   minimumSize: MaterialStateProperty.all<Size>(
                     const Size(double.infinity, 48),
                   ),
