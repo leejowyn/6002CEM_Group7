@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:trip_planner/pages/navigation_page.dart';
-import 'package:trip_planner/pages/user_profile.dart';
+import 'package:trip_planner/user_pages/navigation_page.dart';
+import 'package:trip_planner/user_pages/user_profile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   static String routeName = '/homePage';
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Align(

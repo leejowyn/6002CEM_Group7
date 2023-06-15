@@ -20,7 +20,7 @@ class MyTextBox extends StatelessWidget {
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(8),
       ),
-      padding: EdgeInsets.only(left: 15, top: 15, bottom: 15),
+      padding: EdgeInsets.only(left: 15, top: 5, bottom: 15),
       margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,16 +35,6 @@ class MyTextBox extends StatelessWidget {
               ),
               canEdit
                   ?
-
-              //edit button
-              IconButton(
-                onPressed: onPressed,
-                icon: Icon(
-                  Icons.edit,
-                  color: Colors.grey[400],
-                ),
-              )
-
                   //edit button
                   IconButton(
                       onPressed: onPressed,
@@ -52,19 +42,15 @@ class MyTextBox extends StatelessWidget {
                         Icons.edit,
                         color: Colors.grey[400],
                       ),
+                    iconSize: 15,
                     )
-                  : SizedBox()
+                  : SizedBox(height: 45)
             ],
           ),
-
           //text
           Text(text),
         ],
       ),
     );
   }
-
 }
-
-}
-

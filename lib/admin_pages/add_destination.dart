@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/admin_page.dart';
+import 'package:trip_planner/admin_pages/admin_page.dart';
 import 'package:trip_planner/colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -334,7 +334,7 @@ class _AddDestinationState extends State<AddDestination> {
                   }
                 },
                 icon: const Icon(Icons.add),
-                label: const Text("Add New Destination",
+                label: const Text("Create Destination",
                     style: TextStyle(fontSize: 16)),
                 style: ButtonStyle(
                   minimumSize: MaterialStateProperty.all<Size>(

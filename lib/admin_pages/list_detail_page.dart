@@ -6,7 +6,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:trip_planner/list_destination.dart';
+import 'package:trip_planner/admin_pages/list_destination.dart';
 import 'package:http/http.dart' as http;
 
 class ListDetailPage extends StatefulWidget {
@@ -113,11 +113,11 @@ class _ListDetailPageState extends State<ListDetailPage> {
                 ),
                 TextField(
                   controller: contactController,
-                  decoration: const InputDecoration(labelText: 'contact'),
+                  decoration: const InputDecoration(labelText: 'Contact'),
                 ),
                 TextField(
                   controller: descriptionController,
-                  decoration: const InputDecoration(labelText: 'description'),
+                  decoration: const InputDecoration(labelText: 'Description'),
                 ),
                 const SizedBox(
                   height: 13,

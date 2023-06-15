@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:trip_planner/dashboard.dart';
-import 'package:trip_planner/list_destination.dart';
+import 'package:trip_planner/admin_pages/dashboard.dart';
+import 'package:trip_planner/admin_pages/list_destination.dart';
 import 'package:trip_planner/colors.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:trip_planner/pages/admin_profile.dart';
+import 'package:trip_planner/admin_pages/admin_profile.dart';
 
 class AdminPage extends StatefulWidget {
   static String routeName = '/adminPage';
@@ -17,7 +16,7 @@ class AdminPage extends StatefulWidget {
 class _AdminPageState extends State<AdminPage> {
   int _selectedIndex = 0;
 
-  static const TextStyle optionStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
+  // static const TextStyle optionStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.w600);
 
   static const List<Widget> _widgetOptions = <Widget>[
     Dashboard(),
@@ -52,7 +51,7 @@ class _AdminPageState extends State<AdminPage> {
                     icon: Icons.dashboard
                       ,text:"Dashboard"
                   ),
-                  GButton(icon: Icons.add_location_alt,text:"Add Destination"),
+                  GButton(icon: Icons.add_location_alt,text:"Destination"),
                   GButton(icon: Icons.person,text:"Profile"),
                 ],
                 selectedIndex: _selectedIndex,

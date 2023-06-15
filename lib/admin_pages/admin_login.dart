@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:trip_planner/admin_page.dart';
-import 'package:trip_planner/pages/admin_profile.dart';
-import 'package:trip_planner/pages/home.dart';
-import 'package:trip_planner/pages/splash_page.dart';
+import 'package:trip_planner/admin_pages/admin_page.dart';
+import 'package:trip_planner/admin_pages/admin_profile.dart';
+import 'package:trip_planner/user_pages/home.dart';
+import 'package:trip_planner/user_pages/splash_page.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -27,7 +27,6 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
 
   // sign in method
   void signAdminIn(BuildContext context) async {
-
     // try sign in
     try {
       // show loading circle
@@ -50,51 +49,41 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
       final user = FirebaseAuth.instance.currentUser!;
       print(user.uid);
 
-      // Display success toast
-      Fluttertoast.showToast(
-        msg: "Login successful",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.black,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      // // Display success toast
+      // Fluttertoast.showToast(
+      //   msg: "Login successful",
+      //   toastLength: Toast.LENGTH_SHORT,
+      //   gravity: ToastGravity.BOTTOM,
+      //   backgroundColor: Colors.black,
+      //   textColor: Colors.white,
+      //   fontSize: 16.0,
+      // );
 
       // Redirect to
       Navigator.of(context).pushNamed(
         AdminPage.routeName,
       );
-
     } on FirebaseAuthException catch (e) {
       // pop the loading circle
       Navigator.pop(context);
 
       if (e.code == 'user-not-found') {
         // show wrong email error
-        wrongEmailMessage();
+        errorToastMessage("The email that you've entered is incorrect");
       } else if (e.code == 'wrong-password') {
         // show wrong password error
-        wrongPasswordMessage();
+        errorToastMessage("The password that you've entered is incorrect");
+      }
+      else {
+        errorToastMessage("The email or password that you've entered is incorrect");
       }
     }
   }
 
-  // wrong email message toast
-  void wrongEmailMessage() {
+  // error message toast
+  void errorToastMessage(String message) {
     Fluttertoast.showToast(
-      msg: "Incorrect Email",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      backgroundColor: Colors.black,
-      textColor: Colors.white,
-      fontSize: 16.0,
-    );
-  }
-
-  // wrong password message toast
-  void wrongPasswordMessage() {
-    Fluttertoast.showToast(
-      msg: "Incorrect Password",
+      msg: message,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       backgroundColor: Colors.black,
@@ -143,18 +132,11 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'EMAIL',
-
                     errorText: emailValid ? null : "This field is empty",
-
-                    errorText: emailValid ? null: "This field is empty",
-
                     labelStyle: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
                     ),
                   ),
                 ),
@@ -163,51 +145,23 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: 'PASSWORD',
-
                     errorText: passwordValid ? null : "This field is empty",
-
-                    errorText: passwordValid ? null: "This field is empty",
-
                     labelStyle: const TextStyle(
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
                     ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
-                    ),
                   ),
                   obscureText: true,
                 ),
                 const SizedBox(
-                  height: 5.0,
+                  height: 60,
                 ),
                 Container(
-                  alignment: const Alignment(1, 0),
-                  padding: const EdgeInsets.only(top: 15, left: 20),
-
-                  child: const InkWell(
-                    child: Text(
-                      'Forgot Password',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat',
-                          decoration: TextDecoration.underline),
-                    ),
-                  ),
-
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  height: 40,
                   child: Material(
                     child: Center(
                       child: FilledButton(
                         onPressed: () {
-
                           setState(() {
                             emailValid =
                                 emailController.text.isEmpty ? false : true;
@@ -217,20 +171,15 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
 
                           if (emailValid && passwordValid) {
                             signAdminIn(context);
-                          
                           }
-
-                                setState(() {
-                                emailValid = emailController.text.isEmpty ? false : true;
-                                passwordValid = passwordController.text.isEmpty ? false : true;
-                                });
-
-                                if (emailValid && passwordValid) {
-                          Navigator.pushNamed(context, AdminPage.routeName);}
-
                         },
                         child: const Text(
                           'Login',
+                        ),
+                        style: ButtonStyle(
+                          minimumSize: MaterialStateProperty.all<Size>(
+                            const Size(double.infinity, 50),
+                          ),
                         ),
                       ),
                     ),

@@ -1,20 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/pages/admin_login.dart';
-import 'package:trip_planner/pages/admin_profile.dart';
-import 'package:trip_planner/pages/auth_page.dart';
-import 'package:trip_planner/pages/home.dart';
-import 'package:trip_planner/pages/user_login.dart';
-import 'package:trip_planner/pages/navigation_page.dart';
-import 'package:trip_planner/pages/user_profile.dart';
-import 'package:trip_planner/pages/user_register.dart';
-import 'package:trip_planner/pages/splash_page.dart';
-import 'add_destination.dart';
-import 'admin_page.dart';
-import 'colors.dart';
-import 'list_destination.dart';
-import 'list_detail_page.dart';
-import 'colors.dart';
+import 'package:trip_planner/admin_pages/admin_login.dart';
+import 'package:trip_planner/admin_pages/admin_profile.dart';
+import 'package:trip_planner/auth_page.dart';
+import 'package:trip_planner/user_pages/home.dart';
+import 'package:trip_planner/user_pages/user_login.dart';
+import 'package:trip_planner/user_pages/navigation_page.dart';
+import 'package:trip_planner/user_pages/user_profile.dart';
+import 'package:trip_planner/user_pages/user_register.dart';
+import 'package:trip_planner/user_pages/splash_page.dart';
+import 'admin_pages/add_destination.dart';
+import 'package:trip_planner/admin_pages/admin_page.dart';
+import 'admin_pages/list_destination.dart';
+import 'package:trip_planner/admin_pages/list_detail_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,7 +42,6 @@ class MyApp extends StatelessWidget {
         UserProfilePage.routeName: (context)=> const UserProfilePage(),
         NavigationPage.routeName: (context)=> const NavigationPage(),
         AdminProfilePage.routeName:(context) => const AdminProfilePage(),
-
         AdminPage.routeName: (context) => const AdminPage(),
         ListDestination.routeName: (context) => const ListDestination(),
         AddDestination.routeName: (context) => const AddDestination(),

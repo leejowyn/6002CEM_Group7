@@ -25,12 +25,12 @@ class _DashboardState extends State<Dashboard> {
             destCount = data.length;
           });
 
-          print('Number of items in Destinations table: $destCount');
+          // print('Number of items in Destinations table: $destCount');
         } else {
-          print('Destinations table is empty');
+          // print('Destinations table is empty');
         }
       } else {
-        print('Destinations table does not exist');
+        // print('Destinations table does not exist');
       }
     });
   }
@@ -44,12 +44,12 @@ class _DashboardState extends State<Dashboard> {
           setState(() {
             scheduleCount = data.length;
           });
-          print('Number of items in Schedule table: $scheduleCount');
+          // print('Number of items in Schedule table: $scheduleCount');
         } else {
-          print('Schedule table is empty');
+          // print('Schedule table is empty');
         }
       } else {
-        print('Schedule table does not exist');
+        // print('Schedule table does not exist');
       }
     });
   }
@@ -63,12 +63,12 @@ class _DashboardState extends State<Dashboard> {
           setState(() {
             userCount = data.length;
           });
-          print('Number of Users is: $userCount');
+          // print('Number of Users is: $userCount');
         } else {
-          print('User table is empty');
+          // print('User table is empty');
         }
       } else {
-        print('User table does not exist');
+        // print('User table does not exist');
       }
     });
   }

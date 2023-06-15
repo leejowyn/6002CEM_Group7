@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/pages/splash_page.dart';
+import 'package:trip_planner/user_pages/splash_page.dart';
 import 'package:trip_planner/widgets/text_box.dart';
 import 'package:trip_planner/widgets/alert_dialog_error.dart';
 
@@ -17,7 +17,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
 // User
   final currentUser = FirebaseAuth.instance.currentUser!;
   DatabaseReference dbRef = FirebaseDatabase.instance.ref().child('User');
-
 
   // Edit field
   Future<void> editField(String field) async {
@@ -67,15 +66,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     .child(currentUser.uid)
                     .update(valueToUpdate)
                     .then((value) {
-                  setState(() {
-                  });
-                  Navigator.of(context).pop(newValue);
+                  setState(() {});
                 });
               }),
         ],
       ),
     );
-
   }
 
   // Sign-out function
@@ -104,7 +100,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           backgroundColor: Colors.grey[300],
           actions: [
             //sign out button
-            IconButton(onPressed: signOut, icon: Icon(Icons.logout,color: Colors.white,)),
+            IconButton(onPressed: signOut, icon: Icon(Icons.logout)),
           ],
         ),
         body: FutureBuilder(
@@ -143,7 +139,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   // Name
                   MyTextBox(
                     text: user['name'],
-                    sectionName: 'name',
+                    sectionName: 'Name',
                     onPressed: () => editField('name'),
                     canEdit: true,
                   ),
@@ -151,12 +147,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   // Email
                   MyTextBox(
                     text: currentUser.email!,
-                    sectionName: 'email',
+                    sectionName: 'Email',
                     onPressed: () => editField('email'),
                     canEdit: false,
                   ),
-
-                  SizedBox(height: 60),
                 ],
               );
             } else if (snapshot.hasError) {

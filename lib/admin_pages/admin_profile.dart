@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/pages/splash_page.dart';
+import 'package:trip_planner/user_pages/splash_page.dart';
 import 'package:trip_planner/widgets/text_box.dart';
 import 'package:trip_planner/widgets/alert_dialog_error.dart';
 
@@ -30,11 +30,12 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
     return Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text("Admin Profile"),
           backgroundColor: Colors.grey[300],
           actions: [
             //sign out button
-            IconButton(onPressed: signOut, icon: Icon(Icons.logout,color: Colors.white,)),
+            IconButton(onPressed: signOut, icon: Icon(Icons.logout,)),
           ],
         ),
         body: ListView(

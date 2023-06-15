@@ -1,6 +1,6 @@
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/pages/home.dart';
+import 'package:trip_planner/user_pages/home.dart';
 import '../colors.dart';
 
 class NavigationPage extends StatefulWidget {
