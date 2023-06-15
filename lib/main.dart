@@ -1,10 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/add_destination.dart';
-import 'package:trip_planner/admin_page.dart';
-import 'package:trip_planner/colors.dart';
-import 'package:trip_planner/list_destination.dart';
-import 'package:trip_planner/list_detail_page.dart';
 import 'package:trip_planner/pages/admin_login.dart';
 import 'package:trip_planner/pages/admin_profile.dart';
 import 'package:trip_planner/pages/auth_page.dart';
@@ -14,6 +9,7 @@ import 'package:trip_planner/pages/navigation_page.dart';
 import 'package:trip_planner/pages/user_profile.dart';
 import 'package:trip_planner/pages/user_register.dart';
 import 'package:trip_planner/pages/splash_page.dart';
+import 'colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,22 +20,16 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widgets is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      title: 'Trip Planner Admin',
       theme: ThemeData(
-        //primarySwatch: primary,
-        colorSchemeSeed: const Color(0xFF0F3C4D), useMaterial3: true,
+        colorSchemeSeed: const Color(0xff0f3C4D),useMaterial3:true
       ),
       initialRoute: AuthPage.routeName,
       routes: {
-        AdminPage.routeName: (context) => const AdminPage(),
-        ListDestination.routeName: (context) => const ListDestination(),
-        AddDestination.routeName: (context) => const AddDestination(),
-        ListDetailPage.routeName: (context) => const ListDetailPage(),
         SplashPage.routeName:(context)=> SplashPage(),
         AuthPage.routeName:(context)=> AuthPage(),
         AdminLoginPage.routeName:(context)=> AdminLoginPage(),
@@ -53,5 +43,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
