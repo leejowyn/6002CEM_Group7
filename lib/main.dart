@@ -9,39 +9,37 @@ import 'package:trip_planner/pages/admin_login.dart';
 import 'package:trip_planner/pages/admin_profile.dart';
 import 'package:trip_planner/pages/auth_page.dart';
 import 'package:trip_planner/pages/home.dart';
-import 'package:trip_planner/pages/navigation_page.dart';
-import 'package:trip_planner/pages/splash_page.dart';
 import 'package:trip_planner/pages/user_login.dart';
+import 'package:trip_planner/pages/navigation_page.dart';
 import 'package:trip_planner/pages/user_profile.dart';
 import 'package:trip_planner/pages/user_register.dart';
+import 'package:trip_planner/pages/splash_page.dart';
 
-void main(){
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       title: 'Trip Planner Admin',
       theme: ThemeData(
         //primarySwatch: primary,
         colorSchemeSeed: const Color(0xFF0F3C4D), useMaterial3: true,
       ),
-      initialRoute: AdminLoginPage.routeName,
+      initialRoute: AuthPage.routeName,
       routes: {
         AdminPage.routeName: (context) => const AdminPage(),
         ListDestination.routeName: (context) => const ListDestination(),
         AddDestination.routeName: (context) => const AddDestination(),
         ListDetailPage.routeName: (context) => const ListDetailPage(),
-        AdminLoginPage.routeName: (context) => AdminLoginPage(),
-        AuthPage.routeName: (context) =>AuthPage(),
         SplashPage.routeName:(context)=> SplashPage(),
         AuthPage.routeName:(context)=> AuthPage(),
         AdminLoginPage.routeName:(context)=> AdminLoginPage(),
@@ -52,8 +50,8 @@ class MyApp extends StatelessWidget {
         NavigationPage.routeName: (context)=> NavigationPage(),
         AdminProfilePage.routeName:(context) => AdminProfilePage(),
       },
-      home: const AuthPage(),
     );
   }
 }
+
 

@@ -30,22 +30,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  fluttertoast: ^8.2.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  google_nav_bar: ^5.0.6
+  google_nav_bar: 
   firebase_core: ^2.13.1
-  firebase_database: ^10.2.2
-  fluttertoast: ^8.2.2
   firebase_auth: ^4.6.2
-
+  firebase_database: ^10.2.2
+  cloud_firestore: ^4.8.0
   firebase_storage:
   file_picker:
   csc_picker:
   http:
-
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -78,6 +77,7 @@ flutter:
     - images/profile.png
     - images/schedule.png
     - images/user.png
+    - images/bg.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

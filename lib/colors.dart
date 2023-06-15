@@ -20,4 +20,15 @@ const MaterialColor mprimaryAccent = MaterialColor(_primaryAccentValue, <int, Co
   400: Color(0xFF0098F9),
   700: Color(0xFF0088E0),
 });
+
+const List<Color> gradient = [
+  Color.fromRGBO(24, 26, 32, 1),
+  Color.fromRGBO(24, 26, 32, 0.9),
+  Color.fromRGBO(24, 26, 32, 0.8),
+  Color.fromRGBO(24, 26, 32, 0.7),
+  Color.fromRGBO(24, 26, 32, 0.6),
+  Color.fromRGBO(24, 26, 32, 0.5),
+  Color.fromRGBO(24, 26, 32, 0.4),
+  Color.fromRGBO(24, 26, 32, 0.0),
+];
 const int _primaryAccentValue = 0xFF2DADFF;
