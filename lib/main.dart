@@ -14,6 +14,7 @@ import 'admin_page.dart';
 import 'colors.dart';
 import 'list_destination.dart';
 import 'list_detail_page.dart';
+import 'colors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,7 +49,6 @@ class MyApp extends StatelessWidget {
         ListDestination.routeName: (context) => const ListDestination(),
         AddDestination.routeName: (context) => const AddDestination(),
         ListDetailPage.routeName: (context) => const ListDetailPage(),
-
       },
     );
   }

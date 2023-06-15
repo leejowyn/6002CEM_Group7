@@ -35,6 +35,7 @@ class MyTextBox extends StatelessWidget {
               ),
               canEdit
                   ?
+
               //edit button
               IconButton(
                 onPressed: onPressed,
@@ -43,6 +44,15 @@ class MyTextBox extends StatelessWidget {
                   color: Colors.grey[400],
                 ),
               )
+
+                  //edit button
+                  IconButton(
+                      onPressed: onPressed,
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.grey[400],
+                      ),
+                    )
                   : SizedBox()
             ],
           ),
@@ -53,4 +63,8 @@ class MyTextBox extends StatelessWidget {
       ),
     );
   }
+
 }
+
+}
+

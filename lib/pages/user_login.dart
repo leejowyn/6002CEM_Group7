@@ -175,16 +175,17 @@ class _UserLoginPageState extends State<UserLoginPage> {
                   Container(
                     alignment: const Alignment(1, 0),
                     padding: const EdgeInsets.only(top: 15, left: 20),
-                    // child: const InkWell(
-                    //   child: Text(
-                    //     'Forgot Password',
-                    //     style: TextStyle(
-                    //         color: Colors.black,
-                    //         fontWeight: FontWeight.bold,
-                    //         fontFamily: 'Montserrat',
-                    //         decoration: TextDecoration.underline),
-                    //   ),
-                    // ),
+
+                    child: const InkWell(
+                      child: Text(
+                        'Forgot Password',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Montserrat',
+                            decoration: TextDecoration.underline),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 40,

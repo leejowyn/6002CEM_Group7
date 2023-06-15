@@ -17,6 +17,7 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
 // Admin
   final currentUser = FirebaseAuth.instance.currentUser!;
 
+
   // Sign-out function
   void signOut() {
     FirebaseAuth.instance.signOut();
@@ -34,7 +35,10 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
           backgroundColor: Colors.grey[300],
           actions: [
             //sign out button
+
             IconButton(onPressed: signOut, icon: Icon(Icons.logout)),
+
+            IconButton(onPressed: signOut, icon: Icon(Icons.logout,color: Colors.black,)),
           ],
         ),
         body: ListView(
@@ -65,11 +69,23 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
 
             // Email
             MyTextBox(
+
               text: currentUser.email!,
               sectionName: 'Email',
               canEdit: false,
             ),
             SizedBox(height: 60),
+
+              text: 'Admin Email',
+              sectionName: 'Email',
+              canEdit: false,
+            ),
+            SizedBox(height: 10),
+            MyTextBox(
+              text: 'Admin Password',
+              sectionName: 'Password',
+              canEdit: false,
+            ),
           ],
         ));
   }
