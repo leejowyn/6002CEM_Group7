@@ -23,6 +23,15 @@ class _ListDetailPageState extends State<ListDetailPage> {
   String timezone = "";
   int gmt = 0;
 
+  @override
+  void initState() {
+    super.initState();
+
+    getDestinationCount();
+    getScheduledCount();
+    getUserCount();
+  }
+  
   //API function to call the current time of the country
   Future<void> fetchData(ListDetailArguments args) async {
     const apiKey = "211115054cf14e76bb068ce0a10f3f02";
@@ -303,8 +312,7 @@ class _ListDetailPageState extends State<ListDetailPage> {
     //Get the data from previous page
     final args =
         ModalRoute.of(context)!.settings.arguments as ListDetailArguments;
-    //Call the get time function
-    fetchData(args);
+   
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
