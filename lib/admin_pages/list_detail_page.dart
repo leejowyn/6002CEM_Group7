@@ -23,13 +23,13 @@ class _ListDetailPageState extends State<ListDetailPage> {
   String timezone = "";
   int gmt = 0;
 
-  @override
+ @override
   void initState() {
     super.initState();
-
-    getDestinationCount();
-    getScheduledCount();
-    getUserCount();
+    Future.delayed(Duration.zero, () {
+      final args = ModalRoute.of(context)!.settings.arguments as ListDetailArguments;
+      fetchData(args);
+    });
   }
   
   //API function to call the current time of the country
