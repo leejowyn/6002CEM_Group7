@@ -33,7 +33,6 @@ class _DestinationCardState extends State<DestinationCard> {
 
         Navigator.of(context).pushNamed(
           DestinationDetail.routeName,
-          arguments: widget.destination['key'],
         );
       },
       child: Container(

@@ -1,9 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:timelines/timelines.dart';
 import 'package:trip_planner/user_pages/destination_detail.dart';
 import 'package:trip_planner/user_pages/trip_itinerary.dart';
+import 'package:trip_planner/view_model/destination_view_model.dart';
+import 'package:trip_planner/view_model/timezone_view_model.dart';
+import 'package:trip_planner/view_model/weather_view_model.dart';
 import 'package:trip_planner/widgets/alert_dialog_error.dart';
 import 'package:trip_planner/widgets/alert_dialog_schedule_form.dart';
 
@@ -77,9 +81,17 @@ class _ItineraryTimelineTileState extends State<ItineraryTimelineTile> {
             InkWell(
               onTap: () {
                 if (widget.destination != null) {
+                  DestinationViewModel destinationViewModel = Provider.of<DestinationViewModel>(context, listen: false);
+                  destinationViewModel.fetchDestination(widget.itinerary!['destination_id']);
+
+                  WeatherViewModel weatherViewModel = Provider.of<WeatherViewModel>(context, listen: false);
+                  weatherViewModel.fetchWeather('${widget.destination!['state']} ${widget.destination!['country']}');
+
+                  TimezoneViewModel timezoneViewModel = Provider.of<TimezoneViewModel>(context, listen: false);
+                  timezoneViewModel.fetchTimezone(widget.destination!['country']);
+
                   Navigator.of(context).pushNamed(
                     DestinationDetail.routeName,
-                    arguments: widget.itinerary['destination_id'],
                   );
                 }
               },

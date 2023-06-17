@@ -59,9 +59,7 @@ class MyApp extends StatelessWidget {
           Home.routeName: (context) => const Home(),
           Explore.routeName: (context) => const Explore(),
           DestinationListing.routeName: (context) => const DestinationListing(),
-          DestinationDetail.routeName: (context) => DestinationDetail(
-              destinationId:
-                  ModalRoute.of(context)?.settings.arguments as String),
+          DestinationDetail.routeName: (context) => const DestinationDetail(),
           MyTripListing.routeName: (context) => const MyTripListing(),
           TripItinerary.routeName: (context) => const TripItinerary(),
           TripForm.routeName: (context) => const TripForm(),

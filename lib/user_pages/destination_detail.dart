@@ -20,8 +20,7 @@ import 'package:provider/provider.dart';
 
 class DestinationDetail extends StatefulWidget {
   static String routeName = '/destinationDetail';
-  final String destinationId;
-  const DestinationDetail({Key? key, required this.destinationId}) : super(key: key);
+  const DestinationDetail({Key? key}) : super(key: key);
 
   @override
   State<DestinationDetail> createState() => _DestinationDetailState();
@@ -82,32 +81,10 @@ class _DestinationDetailState extends State<DestinationDetail> {
     }
   }
 
-  void getWeather(String location) async {
-    weather = await weatherService.getWeatherData(location);
-    print(weather);
-    print(weather.condition);
-    print(weather.temperatureC);
-    print(weather.humidity);
-    print(weather.iconUrl);
-  }
-
-  Future<String> getTimezone(String country) async {
-    timezone = await timezoneService.getTimezoneData(country);
-    print(timezone);
-    print(timezone.timezone);
-    print(timezone.timeLocation);
-    print(timezone.gmt);
-
-    return timezone.timezone;
-  }
-
   @override
   Widget build(BuildContext context) {
 
-  // final String destinationId = ModalRoute.of(context)!.settings.arguments as String;
     DestinationViewModel destinationViewModel = Provider.of<DestinationViewModel>(context);
-    // DestinationViewModel destinationViewModel = context.watch<DestinationViewModel>();
-    // destinationViewModel.fetchDestination(widget.destinationId);
     destination = destinationViewModel.destination!;
 
     WeatherViewModel weatherViewModel = Provider.of<WeatherViewModel>(context);
@@ -222,7 +199,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                                   ),
                                   const SizedBox(width: 3),
                                   FutureBuilder(
-                                      future: getAverageRating(widget.destinationId),
+                                      future: getAverageRating(destination.id),
                                       builder: (BuildContext context,
                                           AsyncSnapshot<dynamic> snapshot) {
                                         return Text(snapshot.data.toString());
@@ -268,24 +245,6 @@ class _DestinationDetailState extends State<DestinationDetail> {
                                           // fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                // FutureBuilder(
-                                //     future: getTimezone(destination.country),
-                                //     builder: (BuildContext context,
-                                //         AsyncSnapshot<dynamic> snapshot) {
-                                //       if (snapshot.connectionState == ConnectionState.waiting) {
-                                //         return CircularProgressIndicator();
-                                //       }
-                                //       else {
-                                //         return Text(
-                                //           snapshot.data == null ? "0000-00-00 00:00:00" : snapshot.data,
-                                //           style: TextStyle(
-                                //             fontSize: 30,
-                                //             color: Theme.of(context).primaryColor,
-                                //             // fontWeight: FontWeight.bold,
-                                //           ),
-                                //         );
-                                //       }
-                                //     }),
                                 Divider(height: 40, indent: 10, endIndent: 10, color: Theme.of(context).primaryColor.withOpacity(0.5)),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -419,7 +378,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                                           // insert new review to database
                                           DatabaseReference dbRef =
                                               FirebaseDatabase.instance.ref(
-                                                  'Destination/${widget.destinationId}/review');
+                                                  'Destination/${destination.id}/review');
 
                                           Map<String, String> review = {
                                             'user_id': currentUser.uid,
@@ -457,7 +416,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                               // query: dbRef,
                               query: FirebaseDatabase.instance
                                   .ref()
-                                  .child('Destination/${widget.destinationId}/review')
+                                  .child('Destination/${destination.id}/review')
                                   .orderByChild('datetime'),
                               itemBuilder: (BuildContext context,
                                   DataSnapshot snapshot,
@@ -650,7 +609,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                                                           return BottomSheetTripListingTile(
                                                               trip: trip,
                                                               destinationId:
-                                                                  widget.destinationId,
+                                                                destination.id,
                                                               thumbnail: snapshot
                                                                       .data[
                                                                   'thumbnail']);
@@ -664,7 +623,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                                                           return BottomSheetTripListingTile(
                                                               trip: trip,
                                                               destinationId:
-                                                                  widget.destinationId);
+                                                                destination.id);
                                                         }
                                                       });
                                                 }
@@ -672,7 +631,7 @@ class _DestinationDetailState extends State<DestinationDetail> {
                                                 return BottomSheetTripListingTile(
                                                     trip: trip,
                                                     destinationId:
-                                                        widget.destinationId);
+                                                      destination.id);
                                               }),
                                         ],
                                       ),
