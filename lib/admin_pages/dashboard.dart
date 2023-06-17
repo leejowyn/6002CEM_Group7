@@ -15,6 +15,15 @@ class _DashboardState extends State<Dashboard> {
   int scheduleCount = 0;
   int userCount = 0;
 
+  @override
+  void initState() {
+    super.initState();
+
+    getDestinationCount();
+    getScheduledCount();
+    getUserCount();
+  }
+  
   Future<void> getDestinationCount() async {
     DatabaseReference databaseReference = FirebaseDatabase.instance.ref().child('Destination');
     databaseReference.once().then((DatabaseEvent event) {
@@ -75,13 +84,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    //Call the destination count function
-    getDestinationCount();
-    //Call the scheduled count function
-    getScheduledCount();
-    //Call the user count function
-    getUserCount();
-
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
