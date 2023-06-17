@@ -30,7 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  fluttertoast: ^8.0.8
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,11 +39,16 @@ dependencies:
   firebase_core: ^2.13.1
   firebase_auth: ^4.6.2
   firebase_database: ^10.2.2
-  cloud_firestore: ^4.8.0
   http:
   firebase_storage:
   file_picker:
-  csc_picker:
+  csc_picker: ^0.2.7
+  calendar_date_picker2: ^0.5.2
+  fluttertoast: ^8.0.8
+  intl: ^0.18.1
+  timelines: ^0.1.0
+  rating_dialog: ^2.0.4
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -70,12 +74,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - images/bg.jpg
-     - images/map.png
-     - images/star.png
-     - images/profile.png
-     - images/schedule.png
-     - images/user.png
+     - images/
 
   #   - images/a_dot_ham.jpeg
 
