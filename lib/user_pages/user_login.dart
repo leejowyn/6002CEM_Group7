@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trip_planner/user_pages/home.dart';
-import 'package:trip_planner/user_pages/splash_page.dart';
+import 'package:trip_planner/splash_page.dart';
 
 import '../admin_pages/admin_login.dart';
 import 'user_register.dart';
@@ -46,7 +46,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
       );
 
       // Redirect to homepage
-      Navigator.pushNamed(context, HomePage.routeName);
+      Navigator.pushNamed(context, Home.routeName);
     } on FirebaseAuthException catch (e) {
       // pop the loading circle
       Navigator.pop(context);
@@ -119,7 +119,6 @@ class _UserLoginPageState extends State<UserLoginPage> {
                       labelText: 'EMAIL',
                       errorText: emailValid ? null : "This field is empty",
                       labelStyle: const TextStyle(
-                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.bold,
                         color: Colors.grey,
                       ),
@@ -132,7 +131,6 @@ class _UserLoginPageState extends State<UserLoginPage> {
                       labelText: 'PASSWORD',
                       errorText: passwordValid ? null : "This field is empty",
                       labelStyle: const TextStyle(
-                        fontFamily: 'Montserrat',
                         fontWeight: FontWeight.bold,
                         color: Colors.grey,
                       ),
@@ -184,7 +182,6 @@ class _UserLoginPageState extends State<UserLoginPage> {
                         child: const Text('Don\'t have an account? Sign Up',
                             style: TextStyle(
                                 color: Colors.blueGrey,
-                                fontFamily: 'Montserrat',
                                 fontWeight: FontWeight.bold)),
                       )
                     ],
@@ -208,7 +205,6 @@ class _UserLoginPageState extends State<UserLoginPage> {
               'Login as Admin',
               style: TextStyle(
                   color: Colors.blueGrey,
-                  fontFamily: 'Montserrat',
                   fontWeight: FontWeight.bold),
             ),
           )

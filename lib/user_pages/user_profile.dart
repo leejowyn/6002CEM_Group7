@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/user_pages/splash_page.dart';
+import 'package:trip_planner/splash_page.dart';
 import 'package:trip_planner/widgets/text_box.dart';
 import 'package:trip_planner/widgets/alert_dialog_error.dart';
 
@@ -32,10 +32,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
         ),
         content: TextField(
           autofocus: true,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
             hintText: "Enter new $field",
-            hintStyle: TextStyle(color: Colors.grey),
+            hintStyle: const TextStyle(color: Colors.grey),
           ),
           onChanged: (value) {
             newValue = value;
@@ -44,7 +44,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
         actions: [
           //cancel button
           TextButton(
-            child: Text(
+            child: const Text(
               'Cancel',
               style: TextStyle(color: Colors.white),
             ),
@@ -52,7 +52,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
           //save button
           TextButton(
-              child: Text(
+              child: const Text(
                 'Save',
                 style: TextStyle(color: Colors.white),
               ),
@@ -96,11 +96,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
     return Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          title: Text("User Profile"),
+          title: const Text("User Profile"),
           backgroundColor: Colors.grey[300],
           actions: [
             //sign out button
-            IconButton(onPressed: signOut, icon: Icon(Icons.logout)),
+            IconButton(onPressed: signOut, icon: const Icon(Icons.logout)),
           ],
         ),
         body: FutureBuilder(
@@ -118,7 +118,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   CircleAvatar(
                     backgroundColor: Colors.grey[700],
                     radius: 50,
-                    child: Icon(
+                    child: const Icon(
                       Icons.person,
                       color: Color(0xffCCCCCC),
                       size: 72,

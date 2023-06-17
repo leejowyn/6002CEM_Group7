@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:trip_planner/user_pages/navigation_page.dart';
-import 'package:trip_planner/user_pages/splash_page.dart';
+import 'package:trip_planner/splash_page.dart';
 import 'package:trip_planner/admin_pages/admin_page.dart';
 
 class AuthPage extends StatelessWidget {
@@ -33,10 +33,10 @@ class AuthPage extends StatelessWidget {
                 // return AdminProfilePage();
               }
             });
-            return SplashPage();
+            return const SplashPage();
           } else {
             //If Not logged in
-            return SplashPage();
+            return const SplashPage();
           }
         },
       ),
