@@ -53,17 +53,20 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
         DatabaseReference dbRef = FirebaseDatabase.instance.ref('User/$uid');
 
         Map<String, String> user = {
-          'name': emailController.text.split('@')[0], // initially username
+          'name': emailController.text.split('@')[0], // default name
         };
 
         dbRef.set(user).then((value) {
           // Display success toast
           showToastMessage("You account has been successfully registered");
 
-          // redirect to home page
-          Navigator.of(context).pushNamed(
-            HomePage.routeName,
-          );
+          // redirect to login page
+          // Navigator.of(context).pushNamed(
+          //   UserLoginPage.routeName,
+          // );
+
+          // Navigator.pop(context);
+          Navigator.pushNamed(context, Home.routeName);
         }).catchError((error) {
           showDialog<void>(
             context: context,
@@ -106,7 +109,7 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
         body: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -142,7 +145,6 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                   labelText: 'EMAIL',
                   errorText: emailValid ? null : "This field is empty",
                   labelStyle: const TextStyle(
-                      fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
                       color: Colors.grey),
                 ),
@@ -156,7 +158,6 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                   labelText: 'PASSWORD',
                   errorText: passwordValid ? null : "This field is empty",
                   labelStyle: const TextStyle(
-                      fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
                       color: Colors.grey),
                 ),
@@ -204,7 +205,6 @@ class _UserRegisterPageState extends State<UserRegisterPage> {
                     child: const Text('Already have an account? Login',
                         style: TextStyle(
                             color: Colors.blueGrey,
-                            fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold)),
                   )
                 ],

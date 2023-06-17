@@ -1,63 +1,44 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/user_pages/navigation_page.dart';
+import 'package:trip_planner/colors.dart';
+import 'package:trip_planner/data/category_list_data.dart';
+import 'package:trip_planner/user_pages/destination_listing.dart';
 import 'package:trip_planner/user_pages/user_profile.dart';
+import 'package:trip_planner/widgets/category_image_widget.dart';
+import 'package:trip_planner/widgets/title.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
   static String routeName = '/homePage';
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Align(
-          alignment: Alignment.centerRight,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SizedBox(
-                height: 35,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Text(
-                    "Hallo",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat',
-                      color: Colors.black,
-                    ),
-                  ),
+      backgroundColor: const Color(0xFFF7F7F7),
+      body: Column(
+        children: [
+          const TitleHeading(title: "Categories"),
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.generate(
+                categoryList.length,
+                (index) => CategoryImageWidget(
+                  categoryModel: categoryList[index],
                 ),
               ),
-              SizedBox(width: 20), // Add spacing between the text and icon
-              Padding(
-                padding: EdgeInsets.only(top: 16.0, right: 10.0), // Add right padding to the icon
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(
-                        UserProfilePage.routeName,
-                    );
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: Color(0xffE6E6E6),
-                    radius: 20,
-                    child: Icon(
-                      Icons.person,
-                      color: Color(0xffCCCCCC),
-                      size: 28,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+          const Flexible(child: DestinationListing()),
+        ],
       ),
     );
   }
 }
-
-

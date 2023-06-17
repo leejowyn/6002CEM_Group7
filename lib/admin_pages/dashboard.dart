@@ -23,7 +23,7 @@ class _DashboardState extends State<Dashboard> {
     getScheduledCount();
     getUserCount();
   }
-  
+
   Future<void> getDestinationCount() async {
     DatabaseReference databaseReference = FirebaseDatabase.instance.ref().child('Destination');
     databaseReference.once().then((DatabaseEvent event) {
@@ -34,7 +34,7 @@ class _DashboardState extends State<Dashboard> {
             destCount = data.length;
           });
 
-          // print('Number of items in Destinations table: $destCount');
+          print('Number of items in Destinations table: $destCount');
         } else {
           // print('Destinations table is empty');
         }
@@ -171,7 +171,7 @@ class _DashboardState extends State<Dashboard> {
                                     ),
                                     Padding(
                                       padding:
-                                          const EdgeInsets.fromLTRB(0, 5, 0, 2),
+                                      const EdgeInsets.fromLTRB(0, 5, 0, 2),
                                       child: Container(
                                         width: 80,
                                         child: Text(
@@ -235,7 +235,7 @@ class _DashboardState extends State<Dashboard> {
                                     ),
                                     Padding(
                                       padding:
-                                          const EdgeInsets.fromLTRB(0, 5, 0, 2),
+                                      const EdgeInsets.fromLTRB(0, 5, 0, 2),
                                       child: Container(
                                         width: 80,
                                         child: Text(
@@ -292,7 +292,7 @@ class _DashboardState extends State<Dashboard> {
                                   children: <Widget>[
                                     Container(
                                       constraints:
-                                          const BoxConstraints(maxWidth: 170),
+                                      const BoxConstraints(maxWidth: 170),
                                       child: const Text(
                                         'Scheduled Trips',
                                         style: TextStyle(
@@ -303,7 +303,7 @@ class _DashboardState extends State<Dashboard> {
                                     ),
                                     Padding(
                                       padding:
-                                          const EdgeInsets.fromLTRB(0, 5, 0, 2),
+                                      const EdgeInsets.fromLTRB(0, 5, 0, 2),
                                       child: Container(
                                         width: 50,
                                         child: Text(

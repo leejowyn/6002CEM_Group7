@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/colors.dart';
-import 'package:trip_planner/admin_pages/admin_login.dart';
 import 'package:trip_planner/user_pages/user_login.dart';
 
 class SplashPage extends StatefulWidget {
@@ -21,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
               image: AssetImage("images/bg.jpg"),
               fit: BoxFit.cover,
@@ -31,11 +29,11 @@ class _SplashPageState extends State<SplashPage> {
               color: Colors.transparent,
               child: SafeArea(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 65, horizontal: 25),
+                  padding: const EdgeInsets.symmetric(vertical: 65, horizontal: 25),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Enjoy",
                         style: TextStyle(
                           color: Colors.white70,
@@ -44,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
                           letterSpacing: 1.5,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "the world",
                         style: TextStyle(
                           color: Colors.white54,
@@ -53,8 +51,8 @@ class _SplashPageState extends State<SplashPage> {
                           letterSpacing: 1.5,
                         ),
                       ),
-                      SizedBox(height: 25),
-                      Text(
+                      const SizedBox(height: 25),
+                      const Text(
                         "Embark on a journey of seamless exploration and create unforgettable memories with our all-inclusive trip planning app, from destination discovery to personalized itineraries and beyond.",
                         style: TextStyle(
                           color: Colors.white54,
@@ -64,14 +62,14 @@ class _SplashPageState extends State<SplashPage> {
                         ),
                         textAlign: TextAlign.justify,
                       ),
-                      SizedBox(height: 50),
+                      const SizedBox(height: 80),
                       ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).pushNamed(
                               UserLoginPage.routeName,
                             );
                           },
-                          child: Text("Get Started"),
+                          child: const Text("Get Started"),
                           style: ButtonStyle(
                             minimumSize: MaterialStateProperty.all<Size>(
                               const Size(150, 50),

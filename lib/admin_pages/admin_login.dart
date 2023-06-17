@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trip_planner/admin_pages/admin_page.dart';
 import 'package:trip_planner/admin_pages/admin_profile.dart';
 import 'package:trip_planner/user_pages/home.dart';
-import 'package:trip_planner/user_pages/splash_page.dart';
+import 'package:trip_planner/splash_page.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -134,7 +134,6 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                     labelText: 'EMAIL',
                     errorText: emailValid ? null : "This field is empty",
                     labelStyle: const TextStyle(
-                      fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
                     ),
@@ -147,7 +146,6 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                     labelText: 'PASSWORD',
                     errorText: passwordValid ? null : "This field is empty",
                     labelStyle: const TextStyle(
-                      fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
                     ),

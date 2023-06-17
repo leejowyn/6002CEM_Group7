@@ -1,14 +1,10 @@
 import 'dart:io';
 import 'package:csc_picker/csc_picker.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/admin_pages/admin_page.dart';
-import 'package:trip_planner/colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 
 class AddDestination extends StatefulWidget {
   static String routeName = '/addDestination';
@@ -333,10 +329,12 @@ class _AddDestinationState extends State<AddDestination> {
                     );
                   }
                 },
-                icon: const Icon(Icons.add),
+                icon: const Icon(Icons.add, color: Colors.white,),
                 label: const Text("Create Destination",
-                    style: TextStyle(fontSize: 16)),
+                    style: TextStyle(fontSize: 16,color: Colors.white)),
                 style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(Color(0xff0f3C4D)),
                   minimumSize: MaterialStateProperty.all<Size>(
                     const Size(double.infinity, 48),
                   ),
@@ -347,11 +345,9 @@ class _AddDestinationState extends State<AddDestination> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: const Icon(Icons.arrow_back,color: Colors.white,),
-                label: const Text('Go Back', style: TextStyle(fontSize: 16,color: Colors.white)),
+                icon: const Icon(Icons.arrow_back),
+                label: const Text('Go Back'),
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Color(0xff0f3C4D)),
                   minimumSize: MaterialStateProperty.all<Size>(
                     const Size(double.infinity, 48),
                   ),
