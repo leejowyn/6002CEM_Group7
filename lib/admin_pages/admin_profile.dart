@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:trip_planner/user_pages/splash_page.dart';
+import 'package:trip_planner/splash_page.dart';
 import 'package:trip_planner/widgets/text_box.dart';
 import 'package:trip_planner/widgets/alert_dialog_error.dart';
 

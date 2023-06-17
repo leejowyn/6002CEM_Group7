@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:trip_planner/admin_pages/list_destination.dart';
 import 'package:http/http.dart' as http;
+import 'package:trip_planner/model/timezone.dart';
+import 'package:trip_planner/service/timezone_service.dart';
 
 class ListDetailPage extends StatefulWidget {
   static const String routeName = '/listDetailPage';
@@ -19,36 +21,21 @@ class ListDetailPage extends StatefulWidget {
 }
 
 class _ListDetailPageState extends State<ListDetailPage> {
-  String timeLocation = "";
-  String timezone = "";
-  int gmt = 0;
+  TimezoneService timezoneService = TimezoneService();
+  Timezone timezone = Timezone();
 
- @override
+  void getTimezone(String country) async {
+    timezone = await timezoneService.getTimezoneData(country);
+    setState(() {});
+  }
+
+  @override
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
       final args = ModalRoute.of(context)!.settings.arguments as ListDetailArguments;
-      fetchData(args);
+      getTimezone(args.country);
     });
-  }
-  
-  //API function to call the current time of the country
-  Future<void> fetchData(ListDetailArguments args) async {
-    const apiKey = "211115054cf14e76bb068ce0a10f3f02";
-    final country = args.country.toString();
-    final url =
-        "https://timezone.abstractapi.com/v1/current_time/?api_key=$apiKey&location=$country";
-
-    final response = await http.get(Uri.parse(url));
-
-    if (response.statusCode == 200) {
-      final jsonData = json.decode(response.body);
-      setState(() {
-        timeLocation = jsonData['timezone_location'];
-        timezone = jsonData['datetime'];
-        gmt = jsonData['gmt_offset'];
-      });
-    }
   }
 
   Future<void> selectTime(
@@ -310,9 +297,8 @@ class _ListDetailPageState extends State<ListDetailPage> {
   @override
   Widget build(BuildContext context) {
     //Get the data from previous page
-    final args =
-        ModalRoute.of(context)!.settings.arguments as ListDetailArguments;
-   
+    final args = ModalRoute.of(context)!.settings.arguments as ListDetailArguments;
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -477,19 +463,19 @@ class _ListDetailPageState extends State<ListDetailPage> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    "Current Date Time : " + timezone,
+                                    "Current Date Time : " + timezone.timezone,
                                     style: const TextStyle(
                                       fontSize: 18,
                                     ),
                                   ),
                                   Text(
-                                    "Time Location : " + timeLocation,
+                                    "Time Location : " + timezone.timeLocation,
                                     style: const TextStyle(
                                       fontSize: 18,
                                     ),
                                   ),
                                   Text(
-                                    "GMT : $gmt",
+                                    "GMT : " + timezone.gmt,
                                     style: const TextStyle(
                                       fontSize: 18,
                                     ),
