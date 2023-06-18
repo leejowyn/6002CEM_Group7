@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
+import 'package:csc_picker/csc_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -21,6 +22,7 @@ class ListDetailPage extends StatefulWidget {
 }
 
 class _ListDetailPageState extends State<ListDetailPage> {
+  //The time zone api is from https://app.abstractapi.com/api/timezone/tester
   TimezoneService timezoneService = TimezoneService();
   Timezone timezone = Timezone();
 
@@ -29,11 +31,26 @@ class _ListDetailPageState extends State<ListDetailPage> {
     setState(() {});
   }
 
+  final List<String> categories = [
+    'Natural',
+    'Cultural',
+    'Food and Drink',
+    'Shopping',
+    'Entertainment',
+    'Accommodation',
+    'Wellness and Spa'
+  ];
+
+  String? selectedCategory = '';
+
   @override
   void initState() {
     super.initState();
+    selectedCategory = categories.isNotEmpty ? categories[0] : null;
+
     Future.delayed(Duration.zero, () {
-      final args = ModalRoute.of(context)!.settings.arguments as ListDetailArguments;
+      final args =
+          ModalRoute.of(context)!.settings.arguments as ListDetailArguments;
       getTimezone(args.country);
     });
   }
@@ -61,14 +78,11 @@ class _ListDetailPageState extends State<ListDetailPage> {
   void _showEditDialog(BuildContext context, ListDetailArguments args) {
     TextEditingController nameController =
         TextEditingController(text: args.name);
-    TextEditingController categoryController =
-        TextEditingController(text: args.category);
     TextEditingController addressController =
         TextEditingController(text: args.address);
-    TextEditingController countryController =
-        TextEditingController(text: args.country);
-    TextEditingController stateController =
-        TextEditingController(text: args.state);
+    String? countryValue = "";
+    String? stateValue = "";
+    String? cityValue = "";
     TextEditingController contactController =
         TextEditingController(text: args.contact);
     TextEditingController descriptionController =
@@ -91,21 +105,70 @@ class _ListDetailPageState extends State<ListDetailPage> {
                   controller: nameController,
                   decoration: const InputDecoration(labelText: 'Name'),
                 ),
-                TextField(
-                  controller: categoryController,
-                  decoration: const InputDecoration(labelText: 'Category'),
+                const SizedBox(
+                  height: 8,
+                ),
+                const Text(
+                  "Select Category:",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(left: 18, right: 18),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Colors.grey.withOpacity(0.6), width: 1),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: DropdownButton<String>(
+                    value: selectedCategory,
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        setState(() {
+                          selectedCategory = newValue;
+                        });
+                      }
+                    },
+                    items: categories.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
                 ),
                 TextField(
                   controller: addressController,
                   decoration: const InputDecoration(labelText: 'Address'),
                 ),
-                TextField(
-                  controller: countryController,
-                  decoration: const InputDecoration(labelText: 'Country'),
+                const SizedBox(
+                  height: 8,
                 ),
-                TextField(
-                  controller: stateController,
-                  decoration: const InputDecoration(labelText: 'State'),
+                Text(
+                  "Pick Location:",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                CSCPicker(
+                  //Country Picker
+                  layout: Layout.vertical,
+                  flagState: CountryFlag.DISABLE,
+                  showCities: false,
+                  onCountryChanged: (country) {
+                    setState(() {
+                      countryValue = country;
+                    });
+                  },
+                  onStateChanged: (state) {
+                    setState(() {
+                      stateValue = state;
+                    });
+                  },
+                  onCityChanged: (value) {
+                    setState(() {
+                      cityValue = value;
+                    });
+                  },
                 ),
                 TextField(
                   controller: contactController,
@@ -157,10 +220,10 @@ class _ListDetailPageState extends State<ListDetailPage> {
                       updateData(
                         args.key, // Pass the key of the item to update
                         nameController.text,
-                        categoryController.text,
+                        selectedCategory.toString(),
                         addressController.text,
-                        countryController.text,
-                        stateController.text,
+                        countryValue.toString(),
+                        stateValue.toString(),
                         args.thumbnail,
                         contactController.text,
                         descriptionController.text,
@@ -297,7 +360,8 @@ class _ListDetailPageState extends State<ListDetailPage> {
   @override
   Widget build(BuildContext context) {
     //Get the data from previous page
-    final args = ModalRoute.of(context)!.settings.arguments as ListDetailArguments;
+    final args =
+        ModalRoute.of(context)!.settings.arguments as ListDetailArguments;
 
     return Scaffold(
         extendBodyBehindAppBar: true,
