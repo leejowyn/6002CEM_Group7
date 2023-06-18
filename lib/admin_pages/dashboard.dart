@@ -44,25 +44,6 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
-  Future<void> getScheduledCount() async {
-    DatabaseReference databaseReference = FirebaseDatabase.instance.ref().child('Trip').child('cauxsG2L8DSLuhSIMlQcIw2CEYn2');
-    databaseReference.once().then((DatabaseEvent event) {
-      if (event.snapshot.exists) {
-        Map<dynamic, dynamic>? data = event.snapshot.value as Map<dynamic, dynamic>?;
-        if (data != null) {
-          setState(() {
-            scheduleCount = data.length;
-          });
-          // print('Number of items in Schedule table: $scheduleCount');
-        } else {
-          // print('Schedule table is empty');
-        }
-      } else {
-        // print('Schedule table does not exist');
-      }
-    });
-  }
-
   Future<void> getUserCount() async {
     DatabaseReference databaseReference = FirebaseDatabase.instance.ref().child('User');
     databaseReference.once().then((DatabaseEvent event) {
@@ -82,6 +63,24 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
+  Future<void> getScheduledCount() async {
+    DatabaseReference databaseReference = FirebaseDatabase.instance.ref().child('Trip');
+    databaseReference.once().then((DatabaseEvent event) {
+      if (event.snapshot.exists) {
+        Map<dynamic, dynamic>? data = event.snapshot.value as Map<dynamic, dynamic>?;
+        if (data != null) {
+          setState(() {
+            scheduleCount = data.length;
+          });
+          // print('Number of items in Schedule table: $scheduleCount');
+        } else {
+          // print('Schedule table is empty');
+        }
+      } else {
+        // print('Schedule table does not exist');
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
